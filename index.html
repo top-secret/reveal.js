@@ -34,6 +34,20 @@
 	<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-82108949-4"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-82108949-4');
+	</script>
+
 </head>
 
 <body>
@@ -51,18 +65,18 @@
 			</section>
 
 			<section id="operating-system">
-				<section>
+				<section id="operating-system-simple" data-menu-title="Operating System">
 					<h2>Operating System</h2>
 					<p>
-						<small> A system to operate everything. Complete system which runs everything on mobile, computer or laptop is called as Operating
-							system.
-							<br/>
-							<br/> In a human body, different systems like Circulatory, Digestive, Respiratory, Nervous, Skeleton etc keeps on functioning
-							from birth to death. Hence, collection of these systems as a whole can be called an
-							<u>
-								<i>operating system</i>
-							</u> which controls and operates everything happening in our body.
-						</small>
+						A system to operate everything. Complete system which runs everything on mobile, computer or laptop is called as Operating
+						system.
+						<br/>
+						<br/> In a human body, different systems like Circulatory, Digestive, Respiratory, Nervous, Skeleton etc keeps on functioning
+						from birth to death. Hence, collection of these systems as a whole can be called an
+						<u>
+							<i>operating system</i>
+						</u> which controls and operates everything happening in our body.
+
 					</p>
 
 					<a href="#" class="navigate-down navigate-icons-custom">
@@ -70,21 +84,40 @@
 					</a>
 				</section>
 
-				<section>
+				<section id="operating-system-define" data-menu-title="Operating System - Definition">
 					<h2>Operating System</h2>
 					<p>
-						<small>
-							An operating system (OS) is system software that manages computer hardware and software resources and provides common services
-							for computer programs. All computer programs, excluding firmware, require an operating system to function.
-							<br><br>
-							E.g: Windows,
-							Linux, macOS, Android etc.
-						</small>
+
+						An operating system (OS) is system software that manages computer hardware and software resources and provides common services
+						for computer programs. All computer programs, excluding firmware, require an operating system to function.
+						<br>
+						<br> E.g: Windows, Linux, macOS, Android etc.
+						<a href="http://whatis.techtarget.com/definition/operating-system-OS" target="_blank">Read more </a>
+
 					</p>
 
-					<a href="#/operating-system" class="navigate-icons-custom">
+					<a href="#/operating-system" class="navigate-up navigate-icons-custom">
 						<i class="icon ion-chevron-up"></i>
 					</a>
+				</section>
+			</section>
+
+			<section id="data-wrangling" data-menu-title="Data Wrangling">
+
+				<section id="data-wrangling-simple" data-menu-title="Data Wrangling">
+					<h2>Data Wrangling</h2>
+					<img data-src="images/data-wrangling/water-filter-data-wrangling.jpg">
+					<p>Like this DIY water filter makes the water potable, similarly data wrangling is the process of cleaning complex data
+						sets for analysis in any business.</p>
+				</section>
+				<section id="data-wrangling-define" data-menu-title="Data Wrangling - Definition">
+					<h2>Data wrangling</h2>
+					<p>
+						Data wrangling, sometimes referred to as data munging, is the process of transforming and mapping data from one "raw" data
+						form into another format with the intent of making it more appropriate and valuable for a variety of downstream purposes
+						such as analytics
+						<a href="https://www.datawatch.com/what-is-data-wrangling/" target="_blank" title="Data wrnagling in details">Read more</a>
+					</p>
 				</section>
 			</section>
 
@@ -145,8 +178,33 @@
 				{
 					src: 'plugin/notes/notes.js',
 					async: true
+				},
+				{
+					src: 'plugin/menu/menu.js',
 				}
-			]
+			],
+
+			menu: {
+				markers: true
+			}
+		});
+
+		Reveal.addEventListener('slidechanged', function (event) {
+			// event.previousSlide, event.currentSlide, event.indexh, event.indexv
+			
+			var title = event.indexh;
+
+			if(event.currentSlide.dataset.menuTitle)
+			{
+				title = event.currentSlide.dataset.menuTitle;
+			}
+		
+			gtag('event', 'event_name', {
+				'event_category': 'Slide',
+				'event_label': 'Changed',
+				'event_action': title
+			});
+			
 		});
 	</script>
 
